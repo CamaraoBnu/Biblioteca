@@ -1,14 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BibliotecaPrograma;
 
-/**
- *
- * @author tads
- */
 public class Emprestimo {
+
+public static void fazEmprestimo(){
+       
+   }
     
+public static void calculaDevolucao(){
+       
+   }
+
+public static boolean verificaData(){
+       boolean x= false;
+      return x; 
+   }
+
+public static boolean verificaCadastro(){
+       boolean x= false;
+      return x; 
+   }
+
+public static boolean VerificaDebito(){
+       boolean x= false;
+      return x; 
+   }
+
+public static boolean MudaStatusLivro(){
+       boolean x= false;
+      return x; 
+   }
+
 }
