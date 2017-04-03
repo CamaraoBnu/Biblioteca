@@ -61,6 +61,7 @@ public class Admin {
     public static void menu() {
         Scanner leia = new Scanner(System.in);
         int resp = 0;
+        System.out.println("");
         System.out.println("1-Emprestimo");
         System.out.println("2-Devolução");
         System.out.println("3-Reserva");
@@ -69,6 +70,7 @@ public class Admin {
         System.out.println("6-Cadastrar Usuário");
         System.out.println("7-Cadastrar Admin");
         System.out.println("8-Sair");
+        System.out.println("");
         do {
             System.out.println("Escolha a opção desejada");
             resp = leia.nextInt();
@@ -99,13 +101,16 @@ public class Admin {
                 usuario.cadastraUsuario();
                 break;
             case 7:
-//cadastraAdmin(nome, senha);
+                cadastraAdmin(nome, senha);
                 break;
             case 8:
-
+                System.out.println("bye bye");
+                System.exit(0);
                 break;
         }
     }
+    static String nome = "";
+    static String senha = "";
 
     public static void principal() {
         listaAdmin.add("juca");
@@ -133,6 +138,8 @@ public class Admin {
         } else {
             cadastraAdmin(nome, senha);
         }
+
+        menu();
     }
 
 }
