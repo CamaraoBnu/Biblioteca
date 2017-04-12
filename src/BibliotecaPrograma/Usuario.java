@@ -14,7 +14,7 @@ public class Usuario {
     static String email;
     static String phone;
 
-    static ArrayList<String> listaUsuario = new ArrayList();
+    static ArrayList<Usuario> listaUsuario = new ArrayList();
 
     public static int randomiza() {
         Random random = new Random();
@@ -106,6 +106,8 @@ public class Usuario {
         usuario.phone = phone;
         usuario.numCadastro = randomiza();
 
+        listaUsuario.add(usuario);
+        
         System.out.print("seu número de cadastro é: ");
         System.out.println(numCadastro);
         System.out.println("USUÁRIO CADASTRADO COM SUCESSO");
