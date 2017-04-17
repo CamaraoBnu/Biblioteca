@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
+    
+    ArrayList<Livro> listaLivro = new ArrayList();
 
-    public static void alugaLivro() {
+    public void alugaLivro() {
 
     }
 
-    public static void cadastraAdmin(String nome, String senha) {
+    public void cadastraAdmin(String nome, String senha) {
         Scanner leia = new Scanner(System.in);
         String nomenovo = "";
         do {
@@ -40,7 +42,7 @@ public class Admin {
 
     }
 
-    public static boolean verificaSenha(String nome, String senha) {
+    public boolean verificaSenha(String nome, String senha) {
         if (listaAdmin.contains(nome)) {
             if (listaAdmin.indexOf(nome) == senhaAdmin.indexOf(senha)) {
                 return true;
@@ -49,16 +51,15 @@ public class Admin {
         return false;
     }
 
-    static ArrayList<String> listaAdmin = new ArrayList();
-    static ArrayList senhaAdmin = new ArrayList();
+     ArrayList<String> listaAdmin = new ArrayList();
+     ArrayList senhaAdmin = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("BEM VINDO");
-        principal(true);
-
+        new Admin().principal(true);
     }
 
-    public static void menu() {
+    public void menu() {
         Scanner leia = new Scanner(System.in);
         int resp = 0;
         do {
@@ -76,6 +77,7 @@ public class Admin {
                 System.out.println("Escolha a opção desejada");
                 resp = leia.nextInt();
             } while (resp < 1 || resp > 8);
+            
             switch (resp) {
                 case 1:
                     Emprestimo emprestimo = new Emprestimo();
@@ -95,7 +97,7 @@ public class Admin {
                     break;
                 case 5:
                     Livro livro = new Livro();
-                    livro.cadastraLivro();
+                    livro.cadastraLivro(listaLivro);
                     break;
                 case 6:
                     Usuario usuario = new Usuario();
@@ -112,10 +114,10 @@ public class Admin {
             }
         } while (resp != 8);
     }
-    static String nome = "";
-    static String senha = "";
+    String nome = "";
+    String senha = "";
 
-    public static void principal(boolean cadastro) {
+    public void principal(boolean cadastro) {
         listaAdmin.add("juca");
         senhaAdmin.add("1234");
         Scanner leia = new Scanner(System.in);
@@ -146,8 +148,8 @@ public class Admin {
         } else {
             cadastraAdmin(nome, senha);
             principal(false);
+            
         }
-
         menu();
     }
 

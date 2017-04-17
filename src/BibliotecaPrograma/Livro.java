@@ -6,51 +6,58 @@ import java.util.Scanner;
 
 public class Livro {
 
-    static Livro livro = new Livro();
-    static long isbn = 0;
-    static String titulo = "";
-    static String editora = "";
-    static String autor = "";
-    static int ano = 0;
-
-    static ArrayList<Livro> listaLivro = new ArrayList();
-
-    public void cadastraLivro() {
+     long isbn = 0;
+     String titulo = "";
+     String editora = "";
+     String autor = "";
+     int ano = 0;
+    
+    boolean livroCadastrado(ArrayList<Livro> listaLivro, long isbn){
+        for (Livro livro : listaLivro) {
+            if (livro.isbn == isbn) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public void cadastraLivro(ArrayList<Livro> listaLivro) {
         //editora, titulo, ano, autor, código
         Scanner leia = new Scanner(System.in);
 
-        do {
-            System.out.println("Informe o ISBN do livro a ser cadastrado: ");
-            livro.isbn = leia.nextLong();
-        } while ((livro.isbn == 0) || (listaLivro.contains(livro.isbn)));
-
+        do {     
+            this.isbn =  Util.pedeISBN();
+        } while (livroCadastrado(listaLivro, this.isbn));
+       
         do {
            leia = new Scanner(System.in);
             System.out.println("Informe o titulo do livro: ");
-            livro.titulo = leia.nextLine().trim();
-        } while (livro.titulo.equals(""));
+            this.titulo = leia.nextLine().trim();
+        } while (this.titulo.equals(""));
 
         do {
             System.out.println("Informe o nome do autor do livro:");
-            livro.autor = leia.nextLine().trim();
-        } while (livro.autor.equals(""));
+            this.autor = leia.nextLine().trim();
+        } while (this.autor.equals(""));
 
         do {
             System.out.println("Informe a editora do livro:");
-            livro.editora = leia.nextLine().trim();
-        } while (livro.editora.equals(""));
+            this.editora = leia.nextLine().trim();
+        } while (this.editora.equals(""));
 
         Calendar hoje = Calendar.getInstance();
 
         do {
             System.out.println("Informe o ano de publicação do livro: ");
-            livro.ano = leia.nextInt();
+            this.ano = leia.nextInt();
 
-        } while (livro.ano > hoje.get(Calendar.YEAR) || livro.ano < 1);
+        } while (this.ano > hoje.get(Calendar.YEAR) || this.ano < 1);
 
-        listaLivro.add(livro);
+        listaLivro.add(this);
         System.out.println("LIVRO CADASTRADO COM SUCESSO");
     }
+
+    
 
     public static boolean verificaEspera() {
         boolean x = false;
