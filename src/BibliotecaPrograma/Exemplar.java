@@ -5,22 +5,20 @@ import java.util.Scanner;
 
 public class Exemplar extends Livro {
 
-     ArrayList<Exemplar> listaExemplar = new ArrayList();
-   Exemplar exemplar = new Exemplar();
+    ArrayList<Exemplar> listaExemplar = new ArrayList();
+    long isbn = 0;
+    int cod = 0;
 
-public void cadastraExemplar() {
-
-        Scanner leia = new Scanner(System.in);
-        long cod = 0;
-        long aux = 0;
-        do {           
-            aux = Util.pedeISBN();
-        } while (livroCadastrado(listaLivro, this.isbn));
-
+    public void cadastraExemplar() {
+        isbn = Util.pedeISBNCadastrado();
+        int numExemplares = Util.pedeInt(1, 10000, "Informe o número de exemplares a serem cadastrados(max = 10000):");
         do {
-            System.out.println("informe o codigo do exemplar a ser cadastrado:");
-            cod = leia.nextLong();
-        } while (listaExemplar.contains(cod));
+            do {
+                cod = Util.verificaCod(listaExemplar);
+            } while (listaExemplar.contains(cod));
+            listaExemplar.add(this);
+            numExemplares--;
+        } while (numExemplares != 0);
 
     }
 }

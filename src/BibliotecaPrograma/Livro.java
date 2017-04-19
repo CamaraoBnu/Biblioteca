@@ -6,31 +6,20 @@ import java.util.Scanner;
 
 public class Livro {
 
-     long isbn = 0;
-     String titulo = "";
-     String editora = "";
-     String autor = "";
-     int ano = 0;
-    
-    boolean livroCadastrado(ArrayList<Livro> listaLivro, long isbn){
-        for (Livro livro : listaLivro) {
-            if (livro.isbn == isbn) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public void cadastraLivro(ArrayList<Livro> listaLivro) {
+    long isbn = 0;
+    String titulo = "";
+    String editora = "";
+    String autor = "";
+    int ano = 0;
+
+    public void cadastraLivro() {
         //editora, titulo, ano, autor, código
         Scanner leia = new Scanner(System.in);
-
-        do {     
-            this.isbn =  Util.pedeISBN();
-        } while (livroCadastrado(listaLivro, this.isbn));
-       
+        
+        this.isbn = Util.pedeISBNNaoCadastrado();
+        
         do {
-           leia = new Scanner(System.in);
+            leia = new Scanner(System.in);
             System.out.println("Informe o titulo do livro: ");
             this.titulo = leia.nextLine().trim();
         } while (this.titulo.equals(""));
@@ -53,11 +42,9 @@ public class Livro {
 
         } while (this.ano > hoje.get(Calendar.YEAR) || this.ano < 1);
 
-        listaLivro.add(this);
+        Util.listaLivro.add(this);
         System.out.println("LIVRO CADASTRADO COM SUCESSO");
     }
-
-    
 
     public static boolean verificaEspera() {
         boolean x = false;

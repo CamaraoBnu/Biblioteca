@@ -5,8 +5,6 @@ import java.util.Scanner;
 
 public class Admin {
     
-    ArrayList<Livro> listaLivro = new ArrayList();
-
     public void alugaLivro() {
 
     }
@@ -97,7 +95,7 @@ public class Admin {
                     break;
                 case 5:
                     Livro livro = new Livro();
-                    livro.cadastraLivro(listaLivro);
+                    livro.cadastraLivro();
                     break;
                 case 6:
                     Usuario usuario = new Usuario();

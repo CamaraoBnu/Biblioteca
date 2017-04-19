@@ -16,15 +16,7 @@ public class Usuario {
 
     static ArrayList<Usuario> listaUsuario = new ArrayList();
 
-    public static int randomiza() {
-        Random random = new Random();
-        int i = random.nextInt(99999999);
-        do {
-            i = random.nextInt(99999999);
-        } while (i < 10000000);
-
-        return i;
-    }
+  
 
     public static void cadastraUsuario() {
         Scanner leia = new Scanner(System.in);
@@ -104,7 +96,7 @@ public class Usuario {
 
         usuario.cpfUsuario = cpf;
         usuario.phone = phone;
-        usuario.numCadastro = randomiza();
+        usuario.numCadastro = Util.randomiza();
 
         listaUsuario.add(usuario);
         
