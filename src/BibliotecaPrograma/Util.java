@@ -37,7 +37,7 @@ public class Util {
     public static int pedeInt(int min, int max, String msg) {
         int aux = 0;
         do {
-            System.out.println("");
+            System.out.println(msg);
             aux = new Scanner(System.in).nextInt();
         } while (aux < min || aux > max);
 
