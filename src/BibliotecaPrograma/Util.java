@@ -103,4 +103,42 @@ public class Util {
         return aux;
     }
 
+    public static String pedeCpf() {
+        Scanner leia = new Scanner(System.in);
+        String cpf;
+        char aux1;
+        char aux2;
+        char traco1;
+        boolean erro = false;
+        char chara;
+        boolean auxboo = false;
+        do {
+            auxboo = false;
+            do {
+                System.out.println("Informe o CPF da respectiva pessoa:");
+                cpf = leia.nextLine();
+                cpf.trim();
+            } while (cpf.isEmpty() || (cpf.length() != 14));
+            aux1 = cpf.charAt(3);
+            aux2 = cpf.charAt(7);
+            traco1 = cpf.charAt(11);
+            for (int i = 0; i < cpf.length() - 1; i++) {
+                chara = cpf.charAt(i);
+                if (i == 3 || i == 7 || i == 11) {
+                    continue;
+                }
+                if (chara < 48 || chara > 57) {
+                    auxboo = true;
+                    System.out.println("apenas numeros");
+                    break;
+                }
+            }
+            if (aux1 == ('.') && (aux2 == ('.')) && (traco1 == ('-'))) {
+                erro = true;
+            } else {
+                erro = false;
+            }
+        } while ((!erro) || (auxboo));
+    return cpf;
+    }
 }

@@ -13,7 +13,7 @@ public class Livro {
     int ano = 0;
 
     public void cadastraLivro() {
-        //editora, titulo, ano, autor, código
+        
         Scanner leia = new Scanner(System.in);
         
         this.isbn = Util.pedeISBNNaoCadastrado();
