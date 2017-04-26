@@ -13,6 +13,8 @@ public class Usuario {
     String cpfUsuario;
     String email;
     String phone;
+    //variável débito vai conter as "dívidas" da pessoa referente aos atrasos;
+    float debito;
     int[] aluguelLivroAtual = new int[10];
 
     ArrayList<Usuario> listaUsuario = new ArrayList();
@@ -65,7 +67,7 @@ public class Usuario {
             usuario.email = leia.nextLine();
         } while (usuario.email.equals("") || !usuario.email.contains("@"));
 
-        
+        usuario.debito = 0.0f;
         usuario.phone = phone;
         usuario.numCadastro = Util.randomiza();
 

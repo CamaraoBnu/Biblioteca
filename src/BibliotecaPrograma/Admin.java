@@ -69,12 +69,14 @@ public class Admin {
             System.out.println("5-Cadastrar Livro");
             System.out.println("6-Cadastrar Usuário");
             System.out.println("7-Cadastrar Admin");
-            System.out.println("8-Sair");
+            System.out.println("8-Ver Livros Cadastrados");
+            System.out.println("9-Ver Livro Específico");
+            System.out.println("10-Sair");
             System.out.println("");
             do {
                 System.out.println("Escolha a opção desejada");
                 resp = leia.nextInt();
-            } while (resp < 1 || resp > 8);
+            } while (resp < 1 || resp > 10);
             
             switch (resp) {
                 case 1:
@@ -106,11 +108,17 @@ public class Admin {
                     cadastraAdmin(nome, senha);
                     break;
                 case 8:
+                    Util.mostraListaLivros();
+                    break;
+                case 9:
+                    Util.mostraLivro();
+                    break;
+                case 10:
                     System.out.println("bye bye");
                     System.exit(0);
                     break;
             }
-        } while (resp != 8);
+        } while (resp != 10);
     }
     String nome = "";
     String senha = "";

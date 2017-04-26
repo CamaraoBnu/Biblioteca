@@ -15,14 +15,12 @@ public class Exemplar extends Livro {
             isbn = Util.pedeISBNCadastrado();
             int numExemplares = Util.pedeInt(1, 10000, "Informe o número de exemplares a serem cadastrados(max = 10000):");
             do {
-                do {
-                    cod = Util.verificaCod(listaExemplar);
-                } while (listaExemplar.contains(cod));
+                cod = Util.verificaCod(listaExemplar);
                 disponivel = true;
                 listaExemplar.add(this);
                 numExemplares--;
             } while (numExemplares != 0);
-            System.out.println("OS LIVROS FORAM CADASTRADOS COM SUCESSO");
+            System.out.println("OS EXEMPLARES FORAM CADASTRADOS COM SUCESSO");
         } else {
             int resp = Util.pedeInt(1, 2, "Não há nenhum livro cadastrado, se deseja cadastrar um livro digite 1, se não digite 2");
             if (resp == 1) {

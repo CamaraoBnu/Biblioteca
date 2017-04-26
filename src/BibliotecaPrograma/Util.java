@@ -21,7 +21,40 @@ public class Util {
     public static ArrayList<Livro> getListaLivro() {
         return listaLivro;
     }
-
+  
+    public static void mostraLivro(){
+        Exemplar exemplar = new Exemplar();
+        long isbn = pedeISBNCadastrado();
+        boolean temExemplar = false;
+        for(Livro livro : listaLivro){
+            if(livro.isbn == isbn){
+                System.out.println("");
+                System.out.println(livro.titulo);
+                System.out.println("Autor: " + livro.autor);
+                System.out.println("Editora: " + livro.editora);
+                System.out.println("Ano de publicação: "+ livro.ano);
+                System.out.println("Exemplares: ");
+                for(Exemplar expl : exemplar.listaExemplar){
+                    if(expl.isbn == isbn){
+                        System.out.println("-" + expl.cod);
+                        temExemplar = true;
+                    }
+                }
+                if(!temExemplar){
+                    System.out.println("Este livro não possui exemplares!");
+                }
+                break;
+            }
+        }
+    }
+    
+    public static void mostraListaLivros(){
+        int cont = 0;
+        for(Livro livro : listaLivro){
+            cont++;
+            System.out.println(cont + "- " + livro.titulo);
+        }
+    }
     public static long pedeLong(String mensagem) {
         long valorDigitado = 0;
         try {

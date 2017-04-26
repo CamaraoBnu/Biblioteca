@@ -1,14 +1,49 @@
 package BibliotecaPrograma;
 
-import java.util.Calendar;
+import java.util.Calendar; 
 
 public class Emprestimo {
 
+    //salvar data de devolução
     public void fazEmprestimo() {
         Usuario usuario = new Usuario();
-        usuario.aluguelLivroAtual[1]=3;
         String cpf = Util.pedeCpf();
-        
+        boolean existe = false;
+        for (Usuario usu : usuario.listaUsuario) {
+            if (usu.cpfUsuario.equals(cpf)) {
+                usuario = usu;
+                existe = true;
+                break;
+            }
+        }
+        if (existe) {
+            if (usuario.debito >= 10) {
+                System.out.println("O usuário não pode alugar o livro. Sua multa atual é de: R$" + usuario.debito);
+            } else {
+                int pos = -1;
+                for (int i = 0; i <= 10; i++) {
+                    if (usuario.aluguelLivroAtual[i] == 0) {
+                        pos = i;
+                        break;
+                    }
+                }
+                if (pos == -1) {
+                    System.out.println("O usuário não pode alugar o livro pois já possui 10 livros alugados.");
+                } else {
+                    int cod = Util.pedeInt(100000000, 99999999, "Digite o código do exemplar");
+                    usuario.aluguelLivroAtual[pos] = cod;
+                    if (mudaStatusLivro(cod)) {
+                        System.out.println("O livro foi emprestado com sucesso!");
+                        calculaDevolucao();
+                    } else {
+                        System.out.println("O exemplar não foi encontrado! Não foi possível concluir o empréstimo.");
+                    }
+                }
+            }
+        } else {
+            System.out.println("O usuário não existe no cadastro! Não foi possível concluir o empréstimo.");
+        }
+
     }
 
     public static void calculaDevolucao() {
@@ -31,15 +66,16 @@ public class Emprestimo {
                 }
             }
         }
-        dia = dia+15;
-        if(dia> qntDiasMes){
-            dia = dia-qntDiasMes;
-            if(mes==12){
-                mes=0;
+        dia = dia + 15;
+        if (dia > qntDiasMes) {
+            dia = dia - qntDiasMes;
+            if (mes == 12) {
+                mes = 0;
                 ano++;
             }
             mes++;
         }
+        System.out.println("A data de devolução é " + dia + "/" + mes + "/" + ano);
     }
 
     public static boolean verificaData() {
@@ -54,12 +90,23 @@ public class Emprestimo {
 
     public static boolean VerificaDebito() {
         boolean x = false;
+
         return x;
     }
 
-    public static boolean MudaStatusLivro() {
-        boolean x = false;
-        return x;
+    public static boolean mudaStatusLivro(int codigo) {
+        boolean mudado = false;
+        Exemplar exemplar = new Exemplar();
+        for (Exemplar expl : exemplar.listaExemplar) {
+            if (expl.cod == codigo) {
+                exemplar.listaExemplar.remove(expl);
+                expl.disponivel = false;
+                exemplar.listaExemplar.add(expl);
+                mudado = true;
+                break;
+            }
+        }
+        return mudado;
     }
 
 }
