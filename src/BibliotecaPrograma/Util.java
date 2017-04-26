@@ -21,40 +21,39 @@ public class Util {
     public static ArrayList<Livro> getListaLivro() {
         return listaLivro;
     }
-  
-    public static void mostraLivro(){
-        Exemplar exemplar = new Exemplar();
+
+    public static void mostraLivro() {
+        //Exemplar exemplar = new Exemplar();
         long isbn = pedeISBNCadastrado();
         boolean temExemplar = false;
-        for(Livro livro : listaLivro){
-            if(livro.isbn == isbn){
+        for (Livro livro : listaLivro) {
+            if (livro.getIsbn() == isbn) {
                 System.out.println("");
-                System.out.println(livro.titulo);
-                System.out.println("Autor: " + livro.autor);
-                System.out.println("Editora: " + livro.editora);
-                System.out.println("Ano de publicação: "+ livro.ano);
+                System.out.println(livro.getTitulo());
+                System.out.println("Autor: " + livro.getAutor());
+                System.out.println("Editora: " + livro.getEditora());
+                System.out.println("Ano de publicação: " + livro.getAno());
                 System.out.println("Exemplares: ");
-                for(Exemplar expl : exemplar.listaExemplar){
-                    if(expl.isbn == isbn){
-                        System.out.println("-" + expl.cod);
-                        temExemplar = true;
-                    }
+                for (Exemplar expl : livro.getListaExemplar()) {
+                    System.out.println("-" + expl.getCod());
+                    temExemplar = true;
                 }
-                if(!temExemplar){
+                if (!temExemplar) {
                     System.out.println("Este livro não possui exemplares!");
                 }
                 break;
             }
         }
     }
-    
-    public static void mostraListaLivros(){
+
+    public static void mostraListaLivros() {
         int cont = 0;
-        for(Livro livro : listaLivro){
+        for (Livro livro : listaLivro) {
             cont++;
-            System.out.println(cont + "- " + livro.titulo);
+            System.out.println(cont + "- " + livro.getTitulo());
         }
     }
+
     public static long pedeLong(String mensagem) {
         long valorDigitado = 0;
         try {
@@ -92,7 +91,7 @@ public class Util {
             aux = false;
             cod = randomiza();
             for (Exemplar exemplar : listaExemplar) {
-                if (cod == exemplar.cod) {
+                if (cod == exemplar.getCod()) {
                     aux = true;
                 }
             }
@@ -113,7 +112,7 @@ public class Util {
 
     public static boolean isbnCadastrado(long isbn) {
         for (Livro livro : listaLivro) {
-            if (livro.isbn == isbn) {
+            if (livro.getIsbn() == isbn) {
                 return true;
             }
         }
@@ -172,6 +171,15 @@ public class Util {
                 erro = false;
             }
         } while ((!erro) || (auxboo));
-    return cpf;
+        return cpf;
+    }
+
+    static Livro buscaLivro(long isbn) {
+        for (Livro livro : listaLivro) {
+            if (livro.getIsbn() == isbn) {
+                return livro;
+            }
+        }
+        return null;
     }
 }

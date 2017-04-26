@@ -1,5 +1,5 @@
 package BibliotecaPrograma;
-
+ 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -7,7 +7,6 @@ import javax.swing.text.MaskFormatter;
 
 public class Usuario {
 
-    Usuario usuario = new Usuario();
     String nomeUsuario;
     int numCadastro;
     String cpfUsuario;
@@ -20,12 +19,11 @@ public class Usuario {
     ArrayList<Usuario> listaUsuario = new ArrayList();
 
     public void cadastraUsuario() {
+        
         Scanner leia = new Scanner(System.in);
         System.out.println("Informe o nome da pessoa a ser cadastrada:");
-        usuario.nomeUsuario = leia.nextLine();
-        
-       
-         usuario.cpfUsuario = Util.pedeCpf();
+        this.nomeUsuario = leia.nextLine();
+         this.cpfUsuario = Util.pedeCpf();
         char aux1 = 0;
         char aux2 = 0;
         char traco1 = 0;
@@ -64,17 +62,17 @@ public class Usuario {
 
         do {
             System.out.println("digite o email");
-            usuario.email = leia.nextLine();
-        } while (usuario.email.equals("") || !usuario.email.contains("@"));
+            this.email = leia.nextLine();
+        } while (this.email.equals("") || !this.email.contains("@"));
 
-        usuario.debito = 0.0f;
-        usuario.phone = phone;
-        usuario.numCadastro = Util.randomiza();
+        this.debito = 0.0f;
+        this.phone = phone;
+        this.numCadastro = Util.randomiza();
 
-        listaUsuario.add(usuario);
+        listaUsuario.add(this);
 
         System.out.print("seu número de cadastro é: ");
-        System.out.println(numCadastro);
+        System.out.println(this.numCadastro);
         System.out.println("USUÁRIO CADASTRADO COM SUCESSO");
     }
 

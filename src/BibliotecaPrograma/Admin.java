@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin {
-    
+
+    /*a classe emprestimo foi implementada, o atributo debito 
+    foi adicionado a classe usuario e duas opções [8 e 9] foram adicionadas ao menu. 
+    (Obs: StackOverflowError ao escolher opção emprestimo; exemplares não estão sendo 
+            cadastrados corretamente)*/
     public void alugaLivro() {
 
     }
@@ -49,8 +53,8 @@ public class Admin {
         return false;
     }
 
-     ArrayList<String> listaAdmin = new ArrayList();
-     ArrayList senhaAdmin = new ArrayList();
+    ArrayList<String> listaAdmin = new ArrayList();
+    ArrayList senhaAdmin = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("BEM VINDO");
@@ -77,7 +81,7 @@ public class Admin {
                 System.out.println("Escolha a opção desejada");
                 resp = leia.nextInt();
             } while (resp < 1 || resp > 10);
-            
+
             switch (resp) {
                 case 1:
                     Emprestimo emprestimo = new Emprestimo();
@@ -92,13 +96,32 @@ public class Admin {
                     reserva.addUsuarioLista();
                     break;
                 case 4:
-                    Exemplar exemplar = new Exemplar();
-                    exemplar.cadastraExemplar();
+                    // pedir o isbn.
+                    // verificar se o isbn está cadastrado.
+                    long isbn;
+                    Livro livro;
+                    
+                    isbn = Util.pedeISBN();
+                    livro = Util.buscaLivro(isbn);
+                    if (livro == null) {
+                        resp = Util.pedeInt(1, 2, "ISBN não está cadastrado. Deseja cadastrar? (1 para sim ou 2 para não).");
+                        if (resp == 1) {
+                            livro = new Livro(isbn);
+                            
+                            livro.cadastraLivro();
+                            livro.cadastraExemplar();
+                        }
+                    } else {
+                        livro.cadastraExemplar();
+                    }
+
                     break;
+
                 case 5:
-                    Livro livro = new Livro();
+                    livro = new Livro(Util.pedeISBNNaoCadastrado());
                     livro.cadastraLivro();
                     break;
+                    
                 case 6:
                     Usuario usuario = new Usuario();
                     usuario.cadastraUsuario();
@@ -124,8 +147,13 @@ public class Admin {
     String senha = "";
 
     public void principal(boolean cadastro) {
+        Usuario usuario = new Usuario();
+        usuario.nomeUsuario = "jojoca";
+        usuario.cpfUsuario = "123.123.123-12";
+        usuario.listaUsuario.add(usuario);
         listaAdmin.add("juca");
         senhaAdmin.add("1234");
+        
         Scanner leia = new Scanner(System.in);
         System.out.println("Sistema de biblioteca");
         int aux = 0;
@@ -154,7 +182,7 @@ public class Admin {
         } else {
             cadastraAdmin(nome, senha);
             principal(false);
-            
+
         }
         menu();
     }

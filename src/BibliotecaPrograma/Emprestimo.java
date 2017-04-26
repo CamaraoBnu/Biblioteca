@@ -10,6 +10,7 @@ public class Emprestimo {
         String cpf = Util.pedeCpf();
         boolean existe = false;
         for (Usuario usu : usuario.listaUsuario) {
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             if (usu.cpfUsuario.equals(cpf)) {
                 usuario = usu;
                 existe = true;
@@ -96,12 +97,12 @@ public class Emprestimo {
 
     public static boolean mudaStatusLivro(int codigo) {
         boolean mudado = false;
-        Exemplar exemplar = new Exemplar();
-        for (Exemplar expl : exemplar.listaExemplar) {
-            if (expl.cod == codigo) {
-                exemplar.listaExemplar.remove(expl);
-                expl.disponivel = false;
-                exemplar.listaExemplar.add(expl);
+        Livro livro = new Livro(0);
+        for (Exemplar expl : livro.getListaExemplar()) {
+            if (expl.getCod() == codigo) {
+                livro.getListaExemplar().remove(expl);
+                expl.setDisponivel(false);
+                livro.getListaExemplar().add(expl);
                 mudado = true;
                 break;
             }

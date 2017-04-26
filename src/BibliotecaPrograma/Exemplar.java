@@ -1,31 +1,28 @@
 package BibliotecaPrograma;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+public class Exemplar {
+    
+    private Livro livro;
+    private int cod = 0;
+    private boolean disponivel = true;
 
-public class Exemplar extends Livro {
+    public int getCod() {
+        return cod;
+    }
 
-    ArrayList<Exemplar> listaExemplar = new ArrayList();
-    long isbn = 0;
-    int cod = 0;
-    boolean disponivel = true;
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
 
-    public void cadastraExemplar() {
-        if (!Util.listaLivro.isEmpty()) {
-            isbn = Util.pedeISBNCadastrado();
-            int numExemplares = Util.pedeInt(1, 10000, "Informe o número de exemplares a serem cadastrados(max = 10000):");
-            do {
-                cod = Util.verificaCod(listaExemplar);
-                disponivel = true;
-                listaExemplar.add(this);
-                numExemplares--;
-            } while (numExemplares != 0);
-            System.out.println("OS EXEMPLARES FORAM CADASTRADOS COM SUCESSO");
-        } else {
-            int resp = Util.pedeInt(1, 2, "Não há nenhum livro cadastrado, se deseja cadastrar um livro digite 1, se não digite 2");
-            if (resp == 1) {
-                cadastraLivro();
-            }
-        }
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+    
+    public Exemplar(Livro livro) {
+        this.livro = livro;
     }
 }
